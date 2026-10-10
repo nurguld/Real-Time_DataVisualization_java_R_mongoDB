@@ -10,37 +10,27 @@ Java Spring Boot application that reads one value per second from MongoDB, sends
 - MongoDB
 - GraalVM R component
 
-Install the R component if it is not already installed:
+##How It Works
+1.Numerical data is imported into MongoDB.
+2.The Java application retrieves the data from the database.
+3.Java passes the retrieved value to an R plotting function through GraalVM.
+4.R generates the visualization.
+5.The generated graph is displayed in the web browser.
+6.The visualization updates every second as new data is processed.
 
+Install the R component :
 ```bash
 gu install r
 ```
 
-## MongoDB Import
-
-The application is configured to use:
-
-```text
-Database: pro1
-Collection: pro1_data
-```
-
-Import the dataset with:
-
-```bash
-mongoimport --db pro1 --collection pro1_data --file swe307_db.project_data.json --jsonArray
-```
 
 ## Run
-
 ```bash
 mvn spring-boot:run
 ```
-
 Open the plot page:
 
 ```text
 http://localhost:8080/plot
 ```
 
-The page refreshes every second and shows the latest R-generated SVG plot.
